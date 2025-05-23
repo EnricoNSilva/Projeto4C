@@ -1,0 +1,3 @@
+cpf,senha,nome,saldo,bitcoin,ethereum,ripple
+12345678900,123456,enrico,123316.65,96.50,9.70,11.00
+01234567899,55555,xavier,9,5,50,500
