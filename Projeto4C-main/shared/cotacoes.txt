@@ -1,0 +1,5 @@
+bitcoin,10398
+ripple,1040
+ethereum,108
+parabellium,10
+dogecoin,1

@@ -1,0 +1,2 @@
+cpf,senha,investidores,moedas
+78945612300,123456,2,bitcoin,etherium,ripple
