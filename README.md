@@ -1,63 +1,71 @@
-# Projeto4C - Exchange de Criptomoedas
-<p align="center">
-<a href="#introducao">introducao📚</a>
-<a href="#integrantes">integrantes🤝</a> 
-<a href="#execucao">execução do projeto📄</a>
-</p>
+# 🪙 Simulador de Exchange de Criptomoedas
 
+Este projeto é um simulador de uma corretora (exchange) de criptomoedas baseado em linha de comandos (CLI), desenvolvido inteiramente em **C**. 
 
-# introducao
-<main align="center">
+O projeto foi construído como **Trabalho Final** da disciplina de Desenvolvimento de Algoritmos no curso de Ciência da Computação na **FEI**, com o objetivo de aplicar conceitos sólidos de manipulação de memória, modularização de código, e leitura/escrita de ficheiros para persistência de dados.
 
+## 🎯 O que o projeto faz?
 
-<h3>Breve introdução📦</h3><br>
+O sistema simula o ecossistema completo de uma corretora, dividindo a aplicação em dois grandes módulos que partilham a mesma "base de dados" (ficheiros de texto):
 
-<p>O projeto visa a aplicação de um Sistema de exchange de criptomoedas - Depositando e sacando valor em reais, comprando e vendendo criptoativos também em reais, além das funções de administrador, podendo criar e deletar usuários, criar e deletar criptomoedas e muito mais .O projeto é estruturado totalmente na linguagem C, cobrindo tópicos mais avançados como Structure e Ponteiros, assim como mais básicos porém essenciais ao programa como Loops e condicionais.<br><p><br>
-    
-    Requisitos principais para o projeto
-    ser capaz de desenvolver uma aplicação para as necessidades e processos de uma exchange de criptomoedas imaginária, aplicando conceitos de programação em C, como manipulação de arrays, estruturas de dados, controle de fluxo e leitura/gravação de arquivos.
+### 1. Módulo do Administrador (`ProgramaAdm`)
+- Cadastro e remoção de utilizadores (investidores).
+- Consulta de saldo e extrato de qualquer investidor registado na plataforma.
+- Sistema de login seguro exclusivo para administradores.
 
-<h3>Requisitos principais para o projeto🔧</h3>
+### 2. Módulo do Utilizador (`ProgramaUser`)
+- **Carteira Fiat:** Depósito e levantamento de saldo em Reais (BRL).
+- **Trading:** Compra e venda de criptomoedas (Bitcoin, Ethereum, Ripple) baseadas na cotação atual.
+- **Histórico:** Consulta de saldo atualizado das carteiras e extrato completo de operações.
+- Sistema de autenticação por palavra-passe e validação de fundos antes de qualquer operação.
 
-<h2>Menu para usuários</h2>
+## 🛠️ Tecnologias e Arquitetura
 
-<li>Depósito e Saque: O sistema deve permitir o depósito de reais e o saque desde que o usuário confime sua senha.</li>
-<li>Consulta de Saldo: deve ser exibido o valor do saldo atual em reais, além da quantidade de cada moeda presente na carteira do usuário.</li>
-<li>Consulta de Extrato: O sistema deve permitir a consulta do extrato do usuário, reportando todas as recentes movimentações com informações úteis, como tipo de movimentação, valor, data e etc...</li>
-<li>Compra e Venda de Criptomoedas: O sistema deve permitir o usuário a livre compra e venda dos criptoativos catalogados na exchange, com taxas inclusas para cada transação.</li>
-<li>Atualizar Cotações: O usuário deve ter a liberdade de atualizar as cotações de seus criptoativos quando quiser.</li>
-<li>Persistência de Dados: Os dados dos usuários devem ser armazenados em arquivos .txt para garantir que, ao fechar o programa, as informações não se percam.</li>
-<li>Interface Simples: O programa deve oferecer uma interface de linha de comando (CLI) que seja intuitiva e fácil de usar, com menus para navegação.</li>
+- **Linguagem:** C (Standard C Library)
+- **Persistência de Dados:** File I/O (Manipulação de ficheiros `.txt` para armazenamento contínuo de utilizadores, cotações e histórico de extratos).
+- **Arquitetura Modular:** O código foi dividido em `ProgramaAdm`, `ProgramaUser` e uma pasta `shared` (com funções e dados partilhados por ambos), evitando duplicação de código e facilitando a manutenção.
 
-<h2>Menu para administradores</h2>
-<li>Exclusão e Adição de Usuário: O sistema deve permitir a exclusão de usuários cadastrados e a adição dos mesmos ao administrador.</li>
-<li>Remoção e Cadastro de Criptoativos: O sistema deve permitir o cadastro de criptoativos e a exclusão dos mesmos ao administrador.</li>
-<li>Consultar Saldo de um Investidor: Deve ser informado o CPF do investidor e o saldo deve ser exibido na tela do administrador.</li>
-<li>Consultar Extrado de um Investidor: Usuário informa o CPF do investidor e o extrado é exibido na tela do administrador.</li>
-<li>Atualizar Cotação de Criptomoedas: A função de atualização deve atualizar a cotação de todas as criptomoedas cadastradas na exchange de criptomoedas.</li>
+## 📁 Estrutura do Projeto
 
-<br>
-<br>
-</main>
+O repositório está organizado da seguinte forma:
 
-# integrantes
-<li><a href="https://github.com/GuilhermeXavier2005">Guilherme Silva Xavier </a>- RA: 24.224.025-7</li>
-<li><a href="https://github.com/EnricoNSilva">Enrico Nascimento Silva </a>- 24.224.007-5<br></li>
-Estudantes do curso de Ciências da Computação no Centro Educacional FEI<br><br>
+```text
+📦 Projeto4C
+ ┣ 📂 ProgramaAdm         # Aplicação restrita aos administradores
+ ┃ ┣ 📂 funcoesAdm        # Lógica de negócio do administrador
+ ┃ ┗ 📜 mainADM.c         # Ponto de entrada do Admin
+ ┣ 📂 ProgramaUser        # Aplicação dos investidores
+ ┃ ┣ 📂 FuncoesUSER       # Lógica de negócio do utilizador (depósito, compra, venda)
+ ┃ ┗ 📜 mainUSER.c        # Ponto de entrada do Utilizador
+ ┗ 📂 shared              # Recursos partilhados
+   ┣ 📂 FuncoesCompartilhadas # Funções auxiliares (extratos, cotações)
+   ┗ 📜 cotacoes.txt, extrato.txt, informacoesUsu.txt # Ficheiros de Base de Dados
+```
+## 🚀 Como executar o projeto localmente
 
-# execucao
-<main id="apresentacao" align="center">
-<h3 align="center">Execução💻</h3>
+Pré-requisitos: Ter um compilador C instalado (como o `gcc` via MinGW no Windows ou build-essential no Linux).
 
-<p>Acesse o link do <a href="https://replit.com/@guilhermexavie4/Projeto4?v=1">replit</a>, clique em remix this app e clique no botão de run, isso ativará o terminal do replit, em seguida escolha uma das opções, seguir com o programa de usuarios ou de administrador. </p><br>
+1. Clone o repositório:
+```bash
+git clone [https://github.com/EnricoNSilva/Projeto4C.git](https://github.com/EnricoNSilva/Projeto4C.git)
+```
 
-    Comandos para abrir o executável de administrador                          comando para abrir o executável de usuários
-    ./adm                                                                       ./user
+2. Navegue até a pasta do programa que deseja executar (Admin ou User):
+```bash
+cd Projeto4C/Projeto4C-main/ProgramaAdm
+# ou
+cd Projeto4C/Projeto4C-main/ProgramaUser
+```
 
-    Lista com todos os dados de Usuarios cadastrados.
-        Administrador - CPF : 78945612300 - SENHA: 123456
-        Usuario-Investidor - Nome: enrico - CPF : 12345678900 - SENHA : 123456
-        Usuario-Investidor - Nome: xavier - CPF : 01234567899 - SENHA : 55555
-<br>
+3. Compile o código:
+```bash
+gcc mainADM.c funcoesAdm/*.c ../shared/FuncoesCompartilhadas/*.c -o admin_app
+```
 
-</main>
+4. Execute o programa:
+```bash
+./admin_app
+```
+
+---
+*Este projeto marca um passo importante na compreensão de estruturas de dados e desenvolvimento de software durante a minha jornada acadêmica na FEI.*
